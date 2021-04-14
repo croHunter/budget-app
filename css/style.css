@@ -1,0 +1,161 @@
+html {
+    box-sizing: border-box;
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+html::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: #f7f6ff;
+    font-size: 16px;
+}
+
+h2 {
+    margin: 16px;
+}
+
+header h1 {
+    text-align: center;
+}
+
+.container {
+    margin-top: 10px;
+    padding: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 20px;
+}
+
+.calcutation-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-item {
+    width: 33.3%;
+    word-wrap: break-word;
+    margin-right: 10px;
+}
+
+.budget-feedback, .expense-feedback {
+    display: none;
+}
+
+.show-feedback {
+    display: block;
+    background-color: pink;
+    width: 440px;
+    padding: 10px;
+    margin: 15px 0;
+    color: palevioletred;
+    border-radius: 10px;
+}
+
+fieldset {
+    width: 440px;
+    /* height: 150px; */
+}
+
+/*Text field*/
+
+input {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+input[type="number"] {
+    border: 2px solid #2f3640;
+    height: 45px;
+    padding: 10px;
+    width: 100%;
+    border-radius: 15px;
+    outline: none;
+}
+
+input[type="number"]:focus {
+    box-shadow: 0 0 2pt 1pt #2f3640;
+}
+
+input[type="submit"] {
+    padding: 10px 25px;
+    border-radius: 10px;
+    border: 2px solid #2f3640;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover {
+    background-color: #2f3640;
+    color: white;
+    cursor: pointer;
+}
+
+.price {
+    font-size: 24px;
+}
+
+.showGreen {
+    color: green;
+}
+
+.showRed {
+    color: red;
+}
+
+.showBlack {
+    color: #000;
+}
+
+.showBlue {
+    color: #009879;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th, .styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr td i {
+    cursor: pointer;
+}
+
+/* 
+.styled-table td.icon {
+    display: flex;
+} */

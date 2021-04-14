@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/48a547da75.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dropdown.css">
+    <title>Budget app</title>
+</head>
+
+<body>
+    <header>
+        <h1>BUDGET APP</h1>
+    </header>
+    <main>
+        <div class="container">
+            <section class="budget-section">
+                <div class="budget-feedback">
+                    budget feedback
+                </div>
+                <fieldset>
+                    <legend>Income/Budget</legend>
+                    <form id="budget-form">
+                        <!-- <div class="select-box">
+                        <div class="options-container">
+                            <div class="option">
+                                <input type="radio" class="radio" name="category" id="hotel">
+                                <label for="hotel">Hotel</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" name="category" id="office">
+                                <label for="office">Office</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" name="category" id="part-time">
+                                <label for="part-time">Part time</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" name="category" id="bhatta">
+                                <label for="bhatta">Bhatta</label>
+                            </div>
+                        </div>
+                        <div class="selected">
+                            Selected expense category
+                        </div>
+                    </div> -->
+                        <p>Please Enter Your Budget</p>
+                        <input type="number" name="budget" placeholder="Budget (Rs.)" id="budget-input">
+                        <input type="submit" value="Calculate">
+                    </form>
+
+                </fieldset>
+            </section>
+            <section class="calcutation-section">
+                <div class="show-budget flex-item">
+                    <p>BUDGET</p>
+                    <i class="far fa-money-bill-alt fa-3x showBlue"></i>
+                    <p id="budget" class="price showGreen">&#8377;&nbsp;<span id="budget-amount">0</span></p>
+                </div>
+                <div class="show-expenses flex-item">
+                    <p>EXPENSES</p>
+                    <i class="fas fa-money-check fa-3x showBlue"></i>
+                    <p id="expense" class="price showGreen">&#8377;&nbsp;<span id="expense-amount">0</span></p>
+
+                </div>
+                <div class="show-balance flex-item">
+                    <p>BALANCE</p>
+                    <i class="fas fa-rupee-sign fa-3x showBlue"></i>
+                    <p id="balance" class="price">&#8377;&nbsp;<span id="balance-amount">0</span></p>
+                </div>
+            </section>
+            <section class="expense-section">
+                <div class="expense-feedback">
+                    expense feedback
+                </div>
+                <fieldset>
+                    <legend>Expenses</legend>
+                    <form id="expense-form">
+                        <div class="select-box">
+                            <div class="options-container">
+                                <div class="option">
+                                    <input type="radio" class="radio" name="category" id="transportation">
+                                    <label for="transportation">Transportation</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" name="category" id="electricity">
+                                    <label for="electricity">Electricity</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" name="category" id="rent">
+                                    <label for="rent">Rent</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" name="category" id="water">
+                                    <label for="water">Water</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" name="category" id="clothing">
+                                    <label for="clothing">Clothing</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" name="category" id="food">
+                                    <label for="food">Food</label>
+                                </div>
+                            </div>
+                            <div class="selected">
+                                Selected expense category
+                            </div>
+                        </div>
+                        <p>Please Enter Your Expense</p>
+                        <input type="number" placeholder="Expense (Rs.)" name="expense" id="expense-input">
+                        <input type="submit" value="Add Expense">
+                    </form>
+                </fieldset>
+            </section>
+
+            <section class="list-section">
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Expense Title</th>
+                            <th>Expense Value</th>
+                            <th>Edit/Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                    <!-- <tbody> -->
+                    <!-- <tr>
+                            <td>transportation</td>
+                            <td>55555</td>
+                            <td>
+                                <i class="far fa-edit"></i>
+                                <i class="fas fa-trash"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>transportation</td>
+                            <td>55555</td>
+                            <td><i class="far fa-edit"></i>
+                                <i class="fas fa-trash"></i></td>
+                        </tr>
+                        <tr>
+                            <td>transportation</td>
+                            <td>55555</td>
+                            <td><i class="far fa-edit"></i>
+                                <i class="fas fa-trash"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>transportation</td>
+                            <td>55555</td>
+                            <td><i class="far fa-edit"></i>
+                                <i class="fas fa-trash"></i>
+                            </td>
+                        </tr> -->
+                    <!-- </tbody> -->
+
+                </table>
+            </section>
+    </main>
+    <script src="dropdown.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
