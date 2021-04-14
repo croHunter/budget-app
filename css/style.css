@@ -27,15 +27,38 @@ h2 {
 
 header h1 {
     text-align: center;
+    color: #009879;
 }
 
 .container {
-    margin-top: 10px;
     padding: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 20px;
     column-gap: 20px;
+    max-width: 1100px;
+    margin: 10px auto 0 auto;
+}
+
+@media screen and (max-width:480px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        max-width: 480px;
+        margin: 10px auto 0 auto;
+    }
+    .budget-section {
+        order: 0;
+    }
+    .expense-section {
+        order: 1;
+    }
+    .calcutation-section {
+        order: 2;
+    }
+    .list-section {
+        order: 3;
+    }
 }
 
 .calcutation-section {
@@ -65,7 +88,11 @@ header h1 {
 
 fieldset {
     width: 440px;
-    /* height: 150px; */
+}
+
+legend {
+    color: #009879;
+    font-size: 18px;
 }
 
 /*Text field*/
@@ -154,8 +181,3 @@ input[type="submit"]:hover {
 .styled-table tbody tr td i {
     cursor: pointer;
 }
-
-/* 
-.styled-table td.icon {
-    display: flex;
-} */

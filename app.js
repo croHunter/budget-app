@@ -16,9 +16,21 @@ class UI {
         this.balanceAmount = document.getElementById("balance-amount");
 
         this.expenseList = document.querySelector(".styled-table tbody");
-        this.itemList = [];
-        this.itemID = 1;
+        this.itemList = JSON.parse(localStorage.getItem("itemList")) ?? [];
+
     }
+    //generate Id
+    generateId = () => {
+        var result = [];
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < 10; i++) {
+            result.push(characters.charAt(Math.floor(Math.random() *
+                charactersLength)));
+        }
+        return result.join('');
+    }
+
     //submit budget method
     submitBudgetForm = () => {
         const value = this.budgetInput.value.trim();
@@ -30,6 +42,7 @@ class UI {
                 self.budgetFeedback.classList.remove('show-feedback')
                 , 3000);
         } else {
+            localStorage.setItem("budget", value);
             this.budgetAmount.textContent = value;
             this.budgetInput.value = '';
             this.showBalance();
@@ -38,7 +51,11 @@ class UI {
     showBalance = () => {
         let expense = this.totalExpense();
         let total = parseInt(this.budgetAmount.textContent) - expense;
+        localStorage.setItem("balance", total);
         this.balanceAmount.textContent = total;
+        this.balanceIndicator(total);
+    }
+    balanceIndicator = (total) => {
         if (total < 0) {
             this.balance.classList.remove("showGreen", "showBlack");
             this.balance.classList.add("showRed");
@@ -66,12 +83,14 @@ class UI {
             let amount = parseInt(expenseValue);
             this.expenseInput.value = '';
             const expense = {
-                id: this.itemID,
+                id: this.generateId(),
                 title: expenseType,
                 amount: amount,
             }
-            this.itemID++;
+
             this.itemList.push(expense);
+
+            localStorage.setItem("itemList", JSON.stringify(this.itemList));
             this.addExpense(expense);
         }
     }
@@ -93,18 +112,20 @@ class UI {
 
     }
     totalExpense = () => {
+
         let total = 0;
         if (this.itemList.length > 0) {
-            total = this.itemList.reduce((acc, curr) => {
+            total = this.itemList?.reduce((acc, curr) => {
                 acc += curr.amount;
                 return acc;
-            }, 0)
+            }, 0) ?? 0;
         }
+        localStorage.setItem("expense", total);
         this.expenseAmount.textContent = total;
         return total;
     }
     editExpense = (element) => {
-        let id = parseInt(element.dataset.id);
+        let id = element.dataset.id;
         //edit value in expense-section
         let expense = this.itemList.filter(item => item.id === id);
         this.selectedExpenseType.textContent = expense[0].title;
@@ -112,13 +133,14 @@ class UI {
         this.deleteExpense(element);
     }
     deleteExpense = (element) => {
-        let id = parseInt(element.dataset.id);
+        let id = element.dataset.id;
         const parent = element.parentElement.parentElement;//<tr>
         //remove from the dom
         this.expenseList.removeChild(parent)
         //remove form the list
         let tempList = this.itemList.filter(item => item.id !== id);
         this.itemList = tempList;
+        localStorage.setItem("itemList", JSON.stringify(this.itemList));
         this.showBalance();
     }
 }
@@ -127,6 +149,12 @@ function eventListeners() {
     const budgetForm = document.getElementById("budget-form");
     const expenseForm = document.getElementById("expense-form");
     const expenseList = document.querySelector(".styled-table tbody");
+    const budgetAmount = document.getElementById("budget-amount");
+    const expenseAmount = document.getElementById("expense-amount");
+    const balanceAmount = document.getElementById("balance-amount");
+
+
+
     //new instance of UI class
     const ui = new UI();
     //budget form submit
@@ -148,5 +176,30 @@ function eventListeners() {
 
         }
     });
+
+    budgetAmount.textContent = localStorage.getItem("budget") ?? 0;
+    expenseAmount.textContent = localStorage.getItem("expense") ?? 0;
+    if (localStorage.getItem("balance") !== null) {
+        let balance = localStorage.getItem("balance");
+        balanceAmount.textContent = balance;
+        ui.balanceIndicator(balance);
+
+    }
+    const storedList = JSON.parse(localStorage.getItem("itemList"));
+    storedList?.map((item) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+                <td>${item.id}</td>
+                <td>${item.title}</td>
+                <td>${item.amount}</td>
+                <td>
+                    <span class="edit-icon icon" data-id="${item.id}"><i class="far fa-edit"></i></span>&nbsp;
+                    <span class="delete-icon icon" data-id="${item.id}"><i class="fas fa-trash"></i></span>
+                </td>
+        `;
+        expenseList.appendChild(tr);
+    }) ?? [];
 }
-document.addEventListener('DOMContentLoaded', () => { eventListeners(); });
+document.addEventListener('DOMContentLoaded', () => {
+    eventListeners();
+});
